@@ -1,6 +1,5 @@
-import java.util.Comparator;
 import java.util.LinkedList;
-	public class Block implements Comparator<Block>{
+	public class Block {
 		IProcess p_stored;
 		int size;
 		int start_marker;
@@ -11,7 +10,7 @@ import java.util.LinkedList;
 			size = p_stored.getSize();
 			if (index > 0) {
 				start_marker = memory.get(index - 1).end_marker + 1;
-				end_marker = start_marker + p.getSize();
+				end_marker = start_marker + p.getSize() - 1;
 			} else if (index == 0) {
 				start_marker = 0;
 				end_marker = p.getSize();
@@ -23,7 +22,7 @@ import java.util.LinkedList;
 			size = space;
 			if (memory.size() >= 2) {
 				start_marker = memory.get(index - 1).end_marker + 1;
-				end_marker = start_marker + space;
+				end_marker = start_marker + space - 1;
 			} else if (index == 0) {
 				start_marker = 0;
 				end_marker = space;
@@ -60,16 +59,5 @@ import java.util.LinkedList;
 				}
 			}
 			return memory;
-		}
-
-		@Override
-		public int compare(Block arg0, Block arg1) {
-			if(arg0.size < arg1.size){
-				return -1;
-			}
-			if(arg0.size > arg1.size){
-				return 1;
-			}
-			return 0;
 		}
 	}
